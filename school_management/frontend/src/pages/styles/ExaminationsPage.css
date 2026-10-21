@@ -1,0 +1,669 @@
+
+/* =========================================
+   EXAMINATIONS PAGE
+========================================= */
+
+.examinations-page {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 28px;
+    color: #172033;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.examinations-page *,
+.examinations-page *::before,
+.examinations-page *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.exam-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.exam-eyebrow {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+}
+
+.exam-page-header h1 {
+    margin: 0;
+    color: #172033;
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -0.8px;
+}
+
+.exam-page-header p {
+    margin: 9px 0 0;
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.exam-count {
+    min-width: 175px;
+    padding: 19px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid #e5eaf2;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.035);
+}
+
+.exam-count span {
+    color: #718096;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.exam-count strong {
+    color: #2563eb;
+    font-size: 29px;
+    font-weight: 750;
+    line-height: 1;
+}
+
+/* =========================================
+   ALERTS
+========================================= */
+
+.exam-alert {
+    padding: 14px 17px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.exam-alert-error {
+    color: #b42318;
+    background: #fff1f0;
+    border-color: #fecdca;
+}
+
+.exam-alert-success {
+    color: #067647;
+    background: #ecfdf3;
+    border-color: #abefc6;
+}
+
+/* =========================================
+   MAIN FORM AND SECTIONS
+========================================= */
+
+.exam-form,
+.exam-list-section {
+    padding: 26px;
+    margin-bottom: 28px;
+    background: #ffffff;
+    border: 1px solid #e5eaf2;
+    border-radius: 16px;
+    box-shadow: 0 5px 22px rgba(15, 23, 42, 0.035);
+}
+
+.exam-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.exam-section-heading h2 {
+    margin: 0;
+    color: #172033;
+    font-size: 18px;
+    font-weight: 750;
+    letter-spacing: -0.3px;
+}
+
+.exam-section-heading p {
+    margin: 7px 0 0;
+    color: #718096;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.exam-assignment-heading {
+    padding-top: 25px;
+    margin-top: 27px;
+    border-top: 1px solid #edf0f5;
+}
+
+/* =========================================
+   FORM GRID AND INPUTS
+========================================= */
+
+.exam-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 21px;
+}
+
+.exam-field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 8px;
+}
+
+.exam-field-full {
+    grid-column: 1 / -1;
+}
+
+.exam-field > label {
+    color: #344054;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.exam-field input:not([type="checkbox"]),
+.exam-field select,
+.exam-field textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 45px;
+    padding: 11px 13px;
+    color: #172033;
+    background: #ffffff;
+    border: 1px solid #d7deea;
+    border-radius: 9px;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.exam-field textarea {
+    min-height: 95px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.exam-field input::placeholder,
+.exam-field textarea::placeholder {
+    color: #98a2b3;
+}
+
+.exam-field input:focus,
+.exam-field select:focus,
+.exam-field textarea:focus {
+    border-color: #528bff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.exam-field input[readonly] {
+    color: #475467;
+    background: #f8fafc;
+    cursor: default;
+}
+
+.exam-field small {
+    color: #8792a5;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* =========================================
+   MULTI-SELECT CLASSES AND SUBJECTS
+========================================= */
+
+.exam-multiselect {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 90px;
+    max-height: 280px;
+    overflow-y: auto;
+    padding: 9px;
+    background: #fbfcfe;
+    border: 1px solid #dce3ec;
+    border-radius: 11px;
+}
+
+.exam-multiselect::-webkit-scrollbar {
+    width: 6px;
+}
+
+.exam-multiselect::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+.exam-multiselect::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.exam-checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-height: 39px;
+    padding: 9px 11px;
+    color: #344054;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.exam-checkbox-option:hover {
+    background: #eff6ff;
+    border-color: #dbeafe;
+}
+
+.exam-checkbox-option:has(input:checked) {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+.exam-checkbox-option input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    margin: 0;
+    accent-color: #2563eb;
+    cursor: pointer;
+}
+
+.exam-checkbox-option span {
+    color: #344054;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.exam-multiselect > p {
+    margin: 8px;
+    color: #8792a5;
+    font-size: 13px;
+}
+
+/* =========================================
+   GENERATED ASSIGNMENTS
+========================================= */
+
+.exam-assignment-list {
+    margin-top: 28px;
+    padding-top: 23px;
+    border-top: 1px solid #edf0f5;
+}
+
+.exam-assignment-list > .exam-section-heading {
+    margin-bottom: 17px;
+}
+
+.exam-assignment-card {
+    padding: 20px;
+    margin-bottom: 14px;
+    background: #fbfcff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.exam-assignment-card:hover {
+    border-color: #bfdbfe;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.045);
+}
+
+.exam-assignment-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 17px;
+}
+
+.exam-assignment-title strong {
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.exam-assignment-card .exam-form-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.exam-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-height: 43px;
+    padding: 11px 18px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.exam-button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.exam-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.exam-button-primary {
+    color: #ffffff;
+    background: #2563eb;
+    border-color: #2563eb;
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.13);
+}
+
+.exam-button-primary:hover:not(:disabled) {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    box-shadow: 0 5px 13px rgba(37, 99, 235, 0.19);
+}
+
+.exam-button-secondary {
+    color: #2563eb;
+    background: #ffffff;
+    border-color: #bfdbfe;
+}
+
+.exam-button-secondary:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+}
+
+.exam-remove-button {
+    padding: 7px 10px;
+    color: #b42318;
+    background: #fff1f0;
+    border: 1px solid #fecdca;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.exam-remove-button:hover {
+    background: #fee4e2;
+}
+
+/* =========================================
+   FORM FOOTER
+========================================= */
+
+.exam-form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 23px;
+    margin-top: 24px;
+    border-top: 1px solid #edf0f5;
+}
+
+.exam-form-footer > span {
+    color: #667085;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =========================================
+   EXISTING EXAMINATIONS TABLE
+========================================= */
+
+.exam-list-section .exam-section-heading {
+    margin-bottom: 20px;
+}
+
+.exam-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e5eaf2;
+    border-radius: 11px;
+}
+
+.exam-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.exam-table thead {
+    background: #f8fafc;
+}
+
+.exam-table th {
+    padding: 15px 17px;
+    color: #667085;
+    font-size: 11px;
+    font-weight: 750;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-bottom: 1px solid #e5eaf2;
+}
+
+.exam-table td {
+    padding: 16px 17px;
+    color: #475467;
+    font-size: 13px;
+    border-bottom: 1px solid #edf0f5;
+    vertical-align: middle;
+}
+
+.exam-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.exam-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.exam-table tbody tr:hover {
+    background: #f9fbff;
+}
+
+.exam-table td strong {
+    display: block;
+    color: #172033;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.exam-subtext {
+    display: block;
+    margin-top: 5px;
+    color: #8792a5;
+    font-size: 11px;
+}
+
+.exam-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    color: #344054;
+    background: #f2f4f7;
+    border: 1px solid #eaecf0;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 650;
+    text-transform: capitalize;
+}
+
+/* =========================================
+   EMPTY AND LOADING STATES
+========================================= */
+
+.exam-empty,
+.exam-loading {
+    padding: 32px 20px;
+    color: #718096;
+    background: #fbfcfe;
+    border: 1px dashed #d7deea;
+    border-radius: 11px;
+    font-size: 13px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.exam-loading {
+    margin: 20px 0;
+    background: #ffffff;
+    border-style: solid;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1100px) {
+    .examinations-page {
+        padding: 22px;
+    }
+
+    .exam-form,
+    .exam-list-section {
+        padding: 22px;
+    }
+
+    .exam-assignment-card .exam-form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .examinations-page {
+        padding: 15px;
+    }
+
+    .exam-page-header {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 17px;
+    }
+
+    .exam-page-header h1 {
+        font-size: 25px;
+    }
+
+    .exam-count {
+        min-width: 0;
+        padding: 16px;
+    }
+
+    .exam-count strong {
+        font-size: 25px;
+    }
+
+    .exam-form,
+    .exam-list-section {
+        padding: 17px;
+        border-radius: 12px;
+    }
+
+    .exam-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .exam-section-heading h2 {
+        font-size: 16px;
+    }
+
+    .exam-form-grid,
+    .exam-assignment-card .exam-form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 17px;
+    }
+
+    .exam-field-full {
+        grid-column: auto;
+    }
+
+    .exam-assignment-card {
+        padding: 15px;
+    }
+
+    .exam-form-footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .exam-form-footer .exam-button {
+        width: 100%;
+    }
+
+    .exam-button-secondary {
+        width: 100%;
+    }
+
+    .exam-table th,
+    .exam-table td {
+        padding: 13px;
+    }
+}
+
+@media (max-width: 380px) {
+    .examinations-page {
+        padding: 10px;
+    }
+
+    .exam-form,
+    .exam-list-section {
+        padding: 13px;
+    }
+
+    .exam-page-header h1 {
+        font-size: 23px;
+    }
+
+    .exam-assignment-card {
+        padding: 12px;
+    }
+
+    .exam-checkbox-option {
+        padding: 8px;
+    }
+}

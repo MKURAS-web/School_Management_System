@@ -1,0 +1,402 @@
+/* =========================================================
+   TEACHER PROFILE PAGE
+========================================================= */
+
+.teacher-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+    padding: 30px;
+    color: #1e293b;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.teacher-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.teacher-page-header h1 {
+    margin: 0;
+    color: #172554;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.teacher-page-header p {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* =========================================================
+   EDIT PROFILE BUTTON
+========================================================= */
+
+.teacher-profile-edit-button {
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.teacher-profile-edit-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   MAIN PROFILE CARD
+========================================================= */
+
+.teacher-profile-card {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+
+    overflow: hidden;
+}
+
+/* =========================================================
+   PROFILE CARD HEADER
+========================================================= */
+
+.teacher-profile-card-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 28px 30px;
+
+    background: linear-gradient(
+        135deg,
+        #eff6ff,
+        #ffffff
+    );
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.teacher-profile-avatar {
+    width: 82px;
+    height: 82px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 27px;
+    font-weight: 700;
+
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+/* =========================================================
+   PROFILE HEADING
+========================================================= */
+
+.teacher-profile-heading h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.teacher-profile-heading span {
+    display: inline-block;
+
+    margin-top: 7px;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: #dbeafe;
+    color: #2563eb;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   PROFILE SECTION
+========================================================= */
+
+.teacher-profile-section {
+    padding: 28px 30px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.teacher-profile-section:last-of-type {
+    border-bottom: none;
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.teacher-profile-section-title {
+    margin-bottom: 20px;
+}
+
+.teacher-profile-section-title h3 {
+    margin: 0;
+
+    color: #172554;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.teacher-profile-section-title p {
+    margin: 5px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   PROFILE GRID
+========================================================= */
+
+.teacher-profile-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+/* =========================================================
+   PROFILE FIELD
+========================================================= */
+
+.teacher-profile-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.teacher-profile-field label {
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   DISPLAY VALUE
+========================================================= */
+
+.teacher-profile-value {
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 13px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    color: #1e293b;
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.teacher-profile-field input {
+    width: 100%;
+    min-height: 42px;
+
+    box-sizing: border-box;
+
+    padding: 0 13px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.teacher-profile-field input:focus {
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.teacher-profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 20px 30px;
+
+    background: #f8fafc;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Cancel */
+
+.teacher-profile-cancel-button {
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    padding: 10px 18px;
+
+    background: #ffffff;
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.teacher-profile-cancel-button:hover {
+    background: #f1f5f9;
+}
+
+/* Save */
+
+.teacher-profile-save-button {
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 10px 18px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.teacher-profile-save-button:hover {
+    background: #1d4ed8;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .teacher-page {
+        padding: 20px;
+    }
+
+    .teacher-profile-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .teacher-page {
+        padding: 15px;
+    }
+
+    .teacher-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .teacher-profile-edit-button {
+        width: 100%;
+    }
+
+    .teacher-profile-card-header {
+        padding: 22px 20px;
+    }
+
+    .teacher-profile-section {
+        padding: 22px 20px;
+    }
+
+    .teacher-profile-actions {
+        padding: 18px 20px;
+
+        flex-direction: column-reverse;
+    }
+
+    .teacher-profile-save-button,
+    .teacher-profile-cancel-button {
+        width: 100%;
+    }
+
+    .teacher-profile-avatar {
+        width: 68px;
+        height: 68px;
+
+        font-size: 22px;
+    }
+
+    .teacher-profile-heading h2 {
+        font-size: 19px;
+    }
+}

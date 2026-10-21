@@ -1,0 +1,201 @@
+/* =========================================================
+   ATTENDANCE
+   ========================================================= */
+
+.teacher-attendance-filters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 14px;
+}
+
+.teacher-filter-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #596476;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.teacher-filter-group select,
+.teacher-filter-group input {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #202939;
+    outline: none;
+    font-size: 13px;
+}
+
+.teacher-filter-group select:focus,
+.teacher-filter-group input:focus {
+    border-color: #2563eb;
+}
+
+
+/* Summary */
+
+.teacher-attendance-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.teacher-attendance-summary-card {
+    padding: 18px 20px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 12px;
+}
+
+.teacher-attendance-summary-card span {
+    display: block;
+    margin-bottom: 7px;
+    color: #8992a1;
+    font-size: 12px;
+}
+
+.teacher-attendance-summary-card strong {
+    color: #202939;
+    font-size: 22px;
+}
+
+
+/* Attendance Card */
+
+.teacher-attendance-card {
+    overflow: hidden;
+}
+
+.teacher-save-attendance-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.teacher-save-attendance-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* Table */
+
+.teacher-attendance-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.teacher-attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.teacher-attendance-table th {
+    padding: 13px 18px;
+    background: #f8f9fb;
+    color: #737d8f;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.teacher-attendance-table td {
+    padding: 15px 18px;
+    border-top: 1px solid #edf0f4;
+    color: #596476;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.teacher-attendance-table td strong {
+    color: #202939;
+}
+
+
+/* Attendance Buttons */
+
+.teacher-attendance-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.teacher-attendance-actions button {
+    padding: 6px 10px;
+    border: 1px solid #dfe3e8;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #737d8f;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.teacher-attendance-actions button:hover {
+    background: #f4f6f9;
+}
+
+.teacher-attendance-actions button.selected.present {
+    border-color: #22c55e;
+    background: #ecfdf3;
+    color: #15803d;
+}
+
+.teacher-attendance-actions button.selected.absent {
+    border-color: #ef4444;
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.teacher-attendance-actions button.selected.late {
+    border-color: #f59e0b;
+    background: #fffbeb;
+    color: #b45309;
+}
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .teacher-attendance-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-attendance-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .teacher-card-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .teacher-attendance-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-attendance-actions {
+        flex-direction: column;
+    }
+
+    .teacher-save-attendance-button {
+        width: 100%;
+    }
+}

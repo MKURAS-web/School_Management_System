@@ -1,0 +1,396 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Examination;
+use App\Models\SchoolClass;
+use App\Models\Student;
+use App\Models\StudentMark;
+use App\Models\Subject;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
+
+class ExaminationController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | GET TEACHER EXAMINATIONS
+    |--------------------------------------------------------------------------
+    */
+
+    public function index(Request $request)
+    {
+        $teacher = $request->user();
+
+        $examinations = Examination::with([
+            'schoolClass:id,name',
+            'subject:id,name,code',
+        ])
+            ->withCount('studentMarks')
+            ->where('school_id', $teacher->school_id)
+            ->where('teacher_id', $teacher->id)
+            ->latest('exam_date')
+            ->latest('id')
+            ->get();
+
+        return response()->json([
+            'message' => 'Examinations retrieved successfully.',
+            'examinations' => $examinations,
+        ]);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | CREATE EXAMINATION
+    |--------------------------------------------------------------------------
+    */
+
+    public function store(Request $request)
+    {
+        $teacher = $request->user();
+
+        $validated = $request->validate([
+            'class_id' => [
+                'required',
+                'integer',
+            ],
+
+            'subject_id' => [
+                'required',
+                'integer',
+            ],
+
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+
+            'exam_type' => [
+                'required',
+                Rule::in([
+                    'quiz',
+                    'test',
+                    'midterm',
+                    'terminal',
+                    'annual',
+                    'mock',
+                    'other',
+                ]),
+            ],
+
+            'exam_date' => [
+                'required',
+                'date_format:Y-m-d',
+            ],
+
+            'total_marks' => [
+                'required',
+                'numeric',
+                'gt:0',
+                'max:999999.99',
+            ],
+
+            'description' => [
+                'nullable',
+                'string',
+                'max:5000',
+            ],
+        ]);
+
+        /*
+        | Verify that the class belongs to the teacher's school.
+        */
+
+        $class = SchoolClass::where(
+            'school_id',
+            $teacher->school_id
+        )->findOrFail($validated['class_id']);
+
+        /*
+        | Verify that the teacher is assigned to the class.
+        */
+
+        $isAssignedToClass = $teacher->classes()
+            ->where('school_classes.id', $class->id)
+            ->exists();
+
+        if (!$isAssignedToClass) {
+            return response()->json([
+                'message' => 'You are not assigned to this class.',
+            ], 403);
+        }
+
+        /*
+        | Verify that the subject belongs to the same school.
+        */
+
+        $subject = Subject::where(
+            'school_id',
+            $teacher->school_id
+        )->findOrFail($validated['subject_id']);
+
+        /*
+        | Verify that the teacher is assigned to the subject.
+        */
+
+        $isAssignedToSubject = $teacher->subjects()
+            ->where('subjects.id', $subject->id)
+            ->exists();
+
+        if (!$isAssignedToSubject) {
+            return response()->json([
+                'message' => 'You are not assigned to teach this subject.',
+            ], 403);
+        }
+
+        /*
+        | Verify that the subject is assigned to this class.
+        */
+
+        $subjectBelongsToClass = $class->subjects()
+            ->where('subjects.id', $subject->id)
+            ->exists();
+
+        if (!$subjectBelongsToClass) {
+            return response()->json([
+                'message' => 'This subject is not assigned to the selected class.',
+            ], 422);
+        }
+
+        $examination = Examination::create([
+            'school_id' => $teacher->school_id,
+            'class_id' => $class->id,
+            'subject_id' => $subject->id,
+            'teacher_id' => $teacher->id,
+            'title' => $validated['title'],
+            'exam_type' => $validated['exam_type'],
+            'exam_date' => $validated['exam_date'],
+            'total_marks' => $validated['total_marks'],
+            'description' => $validated['description'] ?? null,
+            'status' => 'draft',
+        ]);
+
+        return response()->json([
+            'message' => 'Examination created successfully.',
+            'examination' => $examination->load([
+                'schoolClass:id,name',
+                'subject:id,name,code',
+            ]),
+        ], 201);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | GET STUDENTS FOR AN EXAMINATION
+    |--------------------------------------------------------------------------
+    */
+
+    public function students(
+        Request $request,
+        Examination $examination
+    ) {
+        $teacher = $request->user();
+
+        $this->authorizeTeacher($teacher, $examination);
+
+        $class = SchoolClass::where(
+            'school_id',
+            $teacher->school_id
+        )->findOrFail($examination->class_id);
+
+        $className = strtolower(trim((string) $class->name));
+
+        /*
+        | Student records in this project identify their class using
+        | the students.class_name column.
+        */
+
+        $students = Student::where(
+            'school_id',
+            $teacher->school_id
+        )
+            ->whereRaw(
+                'LOWER(TRIM(class_name)) = ?',
+                [$className]
+            )
+            ->orderBy('first_name')
+            ->orderBy('last_name')
+            ->get();
+
+        $existingMarks = StudentMark::where(
+            'examination_id',
+            $examination->id
+        )
+            ->get()
+            ->keyBy('student_id');
+
+        $result = $students->map(function ($student) use ($existingMarks) {
+            $mark = $existingMarks->get($student->id);
+
+            return [
+                'id' => $student->id,
+                'first_name' => $student->first_name,
+                'middle_name' => $student->middle_name,
+                'last_name' => $student->last_name,
+                'admission_number' => $student->admission_number,
+                'marks_obtained' => $mark?->marks_obtained,
+                'remarks' => $mark?->remarks,
+            ];
+        })->values();
+
+        return response()->json([
+            'message' => 'Examination students retrieved successfully.',
+            'examination' => $examination->load([
+                'schoolClass:id,name',
+                'subject:id,name,code',
+            ]),
+            'students' => $result,
+        ]);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SAVE OR UPDATE STUDENT MARKS
+    |--------------------------------------------------------------------------
+    */
+
+    public function saveMarks(
+        Request $request,
+        Examination $examination
+    ) {
+        $teacher = $request->user();
+
+        $this->authorizeTeacher($teacher, $examination);
+
+        if ($examination->status === 'completed') {
+            return response()->json([
+                'message' => 'This examination is completed and its marks cannot be changed.',
+            ], 422);
+        }
+
+        $validated = $request->validate([
+            'students' => [
+                'required',
+                'array',
+                'min:1',
+            ],
+
+            'students.*.student_id' => [
+                'required',
+                'integer',
+                'distinct',
+                'exists:students,id',
+            ],
+
+            'students.*.marks_obtained' => [
+                'nullable',
+                'numeric',
+                'min:0',
+            ],
+
+            'students.*.remarks' => [
+                'nullable',
+                'string',
+                'max:1000',
+            ],
+        ]);
+
+        /*
+        | Ensure that submitted students belong to this examination's class.
+        */
+
+        $class = SchoolClass::where(
+            'school_id',
+            $teacher->school_id
+        )->findOrFail($examination->class_id);
+
+        $className = strtolower(trim((string) $class->name));
+
+        $submittedIds = collect($validated['students'])
+            ->pluck('student_id')
+            ->all();
+
+        $validStudentIds = Student::where(
+            'school_id',
+            $teacher->school_id
+        )
+            ->whereRaw(
+                'LOWER(TRIM(class_name)) = ?',
+                [$className]
+            )
+            ->whereIn('id', $submittedIds)
+            ->pluck('id')
+            ->all();
+
+        if (count($validStudentIds) !== count($submittedIds)) {
+            return response()->json([
+                'message' => 'One or more students do not belong to this examination class.',
+            ], 422);
+        }
+
+        /*
+        | Validate that no mark exceeds the examination's maximum.
+        */
+
+        $maximumMarks = (float) $examination->total_marks;
+
+        foreach ($validated['students'] as $studentData) {
+            if (
+                $studentData['marks_obtained'] !== null
+                && (float) $studentData['marks_obtained'] > $maximumMarks
+            ) {
+                throw ValidationException::withMessages([
+                    'students' => [
+                        'A student mark cannot exceed the examination total of '
+                        . $maximumMarks . '.',
+                    ],
+                ]);
+            }
+        }
+
+        DB::transaction(function () use (
+            $validated,
+            $examination,
+            $teacher
+        ) {
+            foreach ($validated['students'] as $studentData) {
+                StudentMark::updateOrCreate(
+                    [
+                        'examination_id' => $examination->id,
+                        'student_id' => $studentData['student_id'],
+                    ],
+                    [
+                        'marks_obtained' => $studentData['marks_obtained'],
+                        'remarks' => $studentData['remarks'] ?? null,
+                        'entered_by' => $teacher->id,
+                    ]
+                );
+            }
+        });
+
+        return response()->json([
+            'message' => 'Student marks saved successfully.',
+            'examination_id' => $examination->id,
+            'students_saved' => count($validated['students']),
+        ]);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | AUTHORIZATION HELPER
+    |--------------------------------------------------------------------------
+    */
+
+    private function authorizeTeacher($teacher, Examination $examination): void
+    {
+        if (
+            (int) $examination->school_id !== (int) $teacher->school_id
+            || (int) $examination->teacher_id !== (int) $teacher->id
+        ) {
+            abort(403, 'You are not authorized to access this examination.');
+        }
+    }
+}

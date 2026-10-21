@@ -1,0 +1,240 @@
+/* =========================================================
+   NOTIFICATIONS
+   ========================================================= */
+
+.teacher-mark-all-button {
+    height: 38px;
+    padding: 0 14px;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #2563eb;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.teacher-mark-all-button:hover {
+    background: #f8f9fb;
+}
+
+.teacher-notification-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.teacher-notification-summary-card {
+    padding: 18px 20px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 12px;
+}
+
+.teacher-notification-summary-card span {
+    display: block;
+    margin-bottom: 7px;
+    color: #8992a1;
+    font-size: 12px;
+}
+
+.teacher-notification-summary-card strong {
+    color: #202939;
+    font-size: 22px;
+}
+
+.teacher-notification-filters {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    padding: 5px;
+    width: fit-content;
+    background: #f4f6f9;
+    border-radius: 9px;
+}
+
+.teacher-notification-filters button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    height: 34px;
+    padding: 0 12px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: #737d8f;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.teacher-notification-filters button span {
+    min-width: 20px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    background: #e5e9ef;
+    font-size: 10px;
+    text-align: center;
+}
+
+.teacher-notification-filters button.active {
+    background: #ffffff;
+    color: #202939;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.teacher-notification-filters button.active span {
+    background: #eef4ff;
+    color: #2563eb;
+}
+
+.teacher-notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.teacher-notification-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 17px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 12px;
+    transition: 0.15s ease;
+}
+
+.teacher-notification-item.unread {
+    border-left: 3px solid #2563eb;
+}
+
+.teacher-notification-item:hover {
+    border-color: #d9dee6;
+}
+
+.teacher-notification-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #eef4ff;
+    color: #2563eb;
+    font-size: 17px;
+}
+
+.teacher-notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.teacher-notification-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.teacher-notification-title-row h3 {
+    margin: 0;
+    color: #202939;
+    font-size: 13px;
+}
+
+.teacher-notification-content p {
+    margin: 5px 0;
+    color: #737d8f;
+    font-size: 12px;
+}
+
+.teacher-notification-time {
+    color: #a0a8b5;
+    font-size: 10px;
+}
+
+.teacher-unread-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2563eb;
+}
+
+.teacher-notification-actions {
+    display: flex;
+    gap: 7px;
+}
+
+.teacher-notification-actions button {
+    height: 32px;
+    padding: 0 10px;
+    border: 1px solid #dfe3e8;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #596476;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.teacher-notification-actions button:hover {
+    background: #f8f9fb;
+}
+
+.teacher-notification-actions button.delete {
+    color: #dc2626;
+}
+
+.teacher-notification-actions button.delete:hover {
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+@media (max-width: 800px) {
+    .teacher-notification-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-notification-item {
+        align-items: flex-start;
+    }
+
+    .teacher-notification-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .teacher-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .teacher-mark-all-button {
+        width: 100%;
+    }
+
+    .teacher-notification-filters {
+        width: 100%;
+    }
+
+    .teacher-notification-filters button {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .teacher-notification-item {
+        flex-wrap: wrap;
+    }
+
+    .teacher-notification-content {
+        width: calc(100% - 58px);
+    }
+
+    .teacher-notification-actions {
+        width: 100%;
+        flex-direction: row;
+        margin-left: 56px;
+    }
+}

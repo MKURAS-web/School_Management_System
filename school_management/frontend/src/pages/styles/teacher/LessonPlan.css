@@ -1,0 +1,279 @@
+/* =========================================================
+   LESSON PLANS
+   ========================================================= */
+
+.teacher-lesson-plan-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.teacher-ai-button,
+.teacher-create-lesson-button {
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.teacher-ai-button {
+    border: 1px solid #dfe3e8;
+    background: #ffffff;
+    color: #596476;
+}
+
+.teacher-ai-button:hover {
+    background: #f8f9fb;
+}
+
+.teacher-create-lesson-button {
+    border: none;
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.teacher-create-lesson-button:hover {
+    background: #1d4ed8;
+}
+
+.teacher-lesson-plan-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.teacher-lesson-summary-card {
+    padding: 18px 20px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 12px;
+}
+
+.teacher-lesson-summary-card span {
+    display: block;
+    margin-bottom: 7px;
+    color: #8992a1;
+    font-size: 12px;
+}
+
+.teacher-lesson-summary-card strong {
+    color: #202939;
+    font-size: 22px;
+}
+
+.teacher-lesson-plan-filters {
+    display: grid;
+    grid-template-columns: 1fr 210px 180px;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 14px;
+}
+
+.teacher-lesson-plan-filters input,
+.teacher-lesson-plan-filters select {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #202939;
+    outline: none;
+    font-size: 13px;
+}
+
+.teacher-lesson-plan-filters input:focus,
+.teacher-lesson-plan-filters select:focus {
+    border-color: #2563eb;
+}
+
+.teacher-lesson-plans-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.teacher-lesson-plan-card {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e8ebf0;
+    border-radius: 14px;
+}
+
+.teacher-lesson-plan-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #f0f4ff;
+    color: #2563eb;
+    font-size: 18px;
+}
+
+.teacher-lesson-plan-main {
+    flex: 1;
+}
+
+.teacher-lesson-plan-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.teacher-lesson-plan-top h2 {
+    margin: 0 0 5px;
+    color: #202939;
+    font-size: 16px;
+}
+
+.teacher-lesson-plan-top p {
+    margin: 0;
+    color: #8992a1;
+    font-size: 12px;
+}
+
+.teacher-lesson-status {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.teacher-lesson-status.prepared {
+    background: #ecfdf3;
+    color: #15803d;
+}
+
+.teacher-lesson-status.draft {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.teacher-lesson-status.completed {
+    background: #eef4ff;
+    color: #2563eb;
+}
+
+.teacher-lesson-plan-info {
+    display: flex;
+    gap: 60px;
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #edf0f4;
+}
+
+.teacher-lesson-plan-info span {
+    display: block;
+    margin-bottom: 5px;
+    color: #8992a1;
+    font-size: 11px;
+}
+
+.teacher-lesson-plan-info strong {
+    color: #202939;
+    font-size: 13px;
+}
+
+.teacher-lesson-plan-footer {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.teacher-lesson-view-button,
+.teacher-lesson-edit-button,
+.teacher-lesson-print-button {
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.teacher-lesson-view-button {
+    border: none;
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.teacher-lesson-edit-button,
+.teacher-lesson-print-button {
+    border: 1px solid #dfe3e8;
+    background: #ffffff;
+    color: #596476;
+}
+
+.teacher-lesson-view-button:hover {
+    background: #1d4ed8;
+}
+
+.teacher-lesson-edit-button:hover,
+.teacher-lesson-print-button:hover {
+    background: #f8f9fb;
+}
+
+@media (max-width: 900px) {
+    .teacher-lesson-plan-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .teacher-lesson-plan-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-lesson-plan-actions {
+        width: 100%;
+    }
+
+    .teacher-ai-button,
+    .teacher-create-lesson-button {
+        flex: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .teacher-lesson-plan-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-lesson-plan-actions {
+        flex-direction: column;
+    }
+
+    .teacher-ai-button,
+    .teacher-create-lesson-button {
+        width: 100%;
+    }
+
+    .teacher-lesson-plan-card {
+        padding: 15px;
+    }
+
+    .teacher-lesson-plan-top {
+        flex-direction: column;
+    }
+
+    .teacher-lesson-status {
+        align-self: flex-start;
+    }
+
+    .teacher-lesson-plan-info {
+        gap: 30px;
+    }
+
+    .teacher-lesson-plan-footer {
+        flex-wrap: wrap;
+    }
+}

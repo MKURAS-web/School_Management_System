@@ -1,0 +1,267 @@
+/* =========================================
+   ADMIN ANNOUNCEMENTS PAGE
+   ========================================= */
+
+.admin-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.admin-page-header {
+    margin-bottom: 32px;
+}
+
+.admin-page-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.025em;
+}
+
+.admin-page-header p {
+    font-size: 15px;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Alert Messages */
+.admin-page > div[style*="background: #fee2e2"],
+.admin-page > div[style*="background: #dcfce7"] {
+    margin-bottom: 24px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* Cards */
+.admin-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.admin-card-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.admin-card-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 4px 0;
+}
+
+.admin-card-header p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Form */
+.admin-form {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.admin-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.admin-form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.admin-form-group input,
+.admin-form-group textarea {
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #111827;
+    background: #f9fafb;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.admin-form-group input:focus,
+.admin-form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.admin-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.admin-form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.admin-button-primary {
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.admin-button-primary:hover:not(:disabled) {
+    background: #2563eb;
+}
+
+.admin-button-primary:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.admin-button-secondary {
+    background: #f3f4f6;
+    color: #374151;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.admin-button-secondary:hover:not(:disabled) {
+    background: #e5e7eb;
+}
+
+.admin-button-danger {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-button-danger:hover {
+    background: #fee2e2;
+    border-color: #fca5a5;
+}
+
+/* Announcements List */
+.admin-announcements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-announcement-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    transition: box-shadow 0.2s ease;
+}
+
+.admin-announcement-item:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.admin-announcement-content {
+    flex: 1;
+}
+
+.admin-announcement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+}
+
+.admin-announcement-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.admin-announcement-date {
+    font-size: 12px;
+    color: #9ca3ab;
+}
+
+.admin-announcement-meta {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.admin-announcement-meta strong {
+    color: #374151;
+    font-weight: 600;
+}
+
+.admin-announcement-message {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Empty State */
+.admin-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.admin-empty-state div {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.admin-empty-state h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #111827;
+}
+
+.admin-empty-state p {
+    margin: 0;
+    font-size: 14px;
+}
